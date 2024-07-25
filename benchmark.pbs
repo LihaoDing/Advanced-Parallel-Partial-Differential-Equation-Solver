@@ -1,0 +1,25 @@
+#!/bin/bash
+#PBS -N Serial_Reaction_Equations
+#PBS -l nodes=1:ppn=4
+#PBS -l walltime=01:00:00
+#PBS -l mem=4gb
+#PBS -j oe
+#PBS -o /path/to/output/Serial_Reaction_Equations_output.log
+
+# Load necessary modules
+module load gcc
+module load openmpi
+
+# Set up the working directory
+cd $PBS_O_WORKDIR
+
+# Compile the program
+g++ -o Serial_Reaction_Equations Serial_Reaction_Equations.cpp -lm
+
+# Create the output directory
+mkdir -p ./out
+
+# Run the program
+./Serial_Reaction_Equations
+
+# End of script
